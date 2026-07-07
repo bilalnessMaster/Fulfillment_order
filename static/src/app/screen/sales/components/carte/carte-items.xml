@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="fulfillment_order.carte_items">
+        <div class="flex flex-col w-ful bg-white ">
+
+            <h2 class="text-base font-bold text-gray-900">Order Summary</h2>
+
+            <span class="self-start mt-2 text-[10px] font-bold tracking-wide text-orange-700 bg-orange-100 rounded px-2 py-1">
+                FULFILLMENT BRAND: DOZANI
+            </span>
+
+            <!-- customer -->
+            <div class="flex items-center justify-between gap-2 mt-3 bg-indigo-50 rounded-xl px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-[10px] font-semibold text-indigo-400 tracking-wide">CUSTOMER</span>
+                        <!-- <span class="text-sm font-bold text-gray-900" t-esc="props.customer.name" /> -->
+                    </div>
+                </div>
+                <button t-on-click="() => props.onEditCustomer()" class="text-indigo-400 hover:text-indigo-600 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- items -->
+            <div class="flex flex-col mt-3">
+                <t t-foreach="cart.cart" t-as="line" t-key="line.id">
+                    <CarteItem product="line" increment="() => cart.incrementQuantity(line)" decrement="() => cart.decrementQuantity(line)" remove="() => cart.removeFromCart(line)" changePrice="(price) => cart.changePrice(line, price)" />
+                </t>
+            </div>
+
+            <!-- totals -->
+
+            <div class="flex flex-col gap-1 mt-4 bg-indigo-50 rounded-xl p-3">
+                <div class="flex items-center justify-between text-sm text-gray-500">
+                    <span>Subtotal</span>
+                    <!-- <span t-esc="'$' + cart.subtotal.toFixed(2)" /> -->
+                </div>
+                <div class="flex items-center justify-between text-sm text-gray-500">
+                    <span>Tax (8%)</span>
+                    <!-- <span t-esc="cart.tax ? '$' + cart.tax.toFixed(2) : '$0.00 (Exempt)'" /> -->
+                </div>
+                <div class="flex items-center justify-between text-base font-bold text-gray-900 mt-1">
+                    <span>Total</span>
+                    <!-- <span t-esc="'$' + cart.total.toFixed(2)" /> -->
+                </div>
+                <!-- actions -->
+                <button t-on-click="() => cart.sendToPreparation()" class="flex items-center justify-center gap-2 mt-4 py-2.5 rounded bg-indigo-900 text-white text-sm font-semibold hover:bg-indigo-950 transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-4 h-4">
+                        <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z" clip-rule="evenodd" />
+                    </svg>
+                SEND TO PREPARATION
+                </button>
+
+                <button t-on-click="() => cart.saveDraft()" class="mt-2 py-2.5 rounded bg-indigo-100 text-indigo-900 text-sm font-semibold hover:bg-indigo-200 transition-colors cursor-pointer">
+                SAVE DRAFT
+                </button>
+            </div>
+
+        </div>
+    </t>
+</templates>

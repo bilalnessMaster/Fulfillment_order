@@ -32,6 +32,12 @@ registry.category("services").add("fulfillmentCart", {
                 if (productFind && productFind.quantity > 1) {
                     productFind.quantity -= 1;
                 }
+            },
+            changePrice(product, newPrice) {
+                const productFind = this.cart.find(p => p.id === product.id);
+                if (productFind) {
+                    productFind.list_price = newPrice;
+                }
             }
         });
     },

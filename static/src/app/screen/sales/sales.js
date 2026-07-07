@@ -3,7 +3,8 @@ import { Component } from "@odoo/owl";
 import { SalesNavbar } from "./components/sales-navbar/sales-navbar.js";
 import { ProductsList } from "./components/productComponents/product-container/product-container.js";
 import { ProductCard } from "./components/productComponents/card-product/card-product.js";
-
+import { CarteItems } from "./components/carte/carte-items.js";
+// import { CarteItems } from "./components/carte/carte-items.js";
 
 
 export class SalesScreen extends Component {
@@ -11,6 +12,7 @@ export class SalesScreen extends Component {
     static components = {
         SalesNavbar,
         ProductsList,
-        ProductCard
+        ProductCard,
+        CarteItems
     }
 }

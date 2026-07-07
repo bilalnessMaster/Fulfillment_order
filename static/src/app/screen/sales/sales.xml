@@ -7,8 +7,10 @@
             <div class="col-span-9">
                 <ProductsList />
             </div>
-            <div class="col-span-3 bg-neutral-500">
-                Cart items
+            <div class="col-span-3 border-l   border-l-gray-200">
+                <div class="">
+                    <CarteItems />
+                </div>
             </div>
         </div>
     </t>
