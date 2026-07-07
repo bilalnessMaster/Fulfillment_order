@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- This contains the tour assets. They are included during testing. -->
+    <template id="fulfillment_order.fulfillment_index_page" name="POS Index">
+        &lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <title>Fulfillment</title>
+
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+                <style> 
+                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+                    body {
+                        background: #FFFFFF; 
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                    } 
+
+                </style>
+
+                <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+                <t t-call-assets="web._assets_core" t-css="false" />
+                <t t-call-assets="fulfillment_order.assets_prod" />
+
+            </head>
+            <body class="o_fulfillment">
+            </body>
+        </html>
+    </template>
+
+</odoo>

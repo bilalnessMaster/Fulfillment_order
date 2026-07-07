@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="fulfillment_order.sales_screen">
+        <SalesNavbar />
+        <div class="grid grid-cols-12  w-full ">
+            <div class="col-span-9">
+                <ProductsList />
+            </div>
+            <div class="col-span-3 bg-neutral-500">
+                Cart items
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,23 @@
+import { reactive, Component, onMounted, onWillStart, useState } from "@odoo/owl";
+// import { _t } from "@web/core/l10n/translation";
+import { useService } from "@web/core/utils/hooks";
+import { Navbar } from "./component/Navbar/Navbar";
+import { SalesScreen } from "./screen/sales/sales";
+import { OrdersScreen } from "./screen/orders/orders";
+
+// root component of the fulfillment order app
+
+export class FulfillmentOrderApp extends Component {
+    static template = "fulfillment_order.FulfillmentOrderApp";
+    static components = {
+        Navbar,
+        SalesScreen,
+        OrdersScreen,
+    };
+    setup() {
+        this.store = useState(useService("fulfillmentStore"));
+        onMounted(async () => {
+            console.log("FulfillmentOrderApp mounted");
+        })
+    }
+}

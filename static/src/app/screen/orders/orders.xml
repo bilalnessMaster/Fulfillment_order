@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="fulfillment_order.orders_screen">
+        <div class="w-full ">
+            <h1 class="h4 mb-0 text-primary">Orders</h1>
+        </div>
+    </t>
+</templates>
