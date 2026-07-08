@@ -14,8 +14,50 @@ class FulfilmentOrderController(http.Controller):
 
     @http.route("/fulfillment/api/v1/get-products", type="json", auth="user")
     def get_products(self):
-        return  request.env["product.product"].sudo().search_read([], ["id", "name", "list_price", "image_1920", "default_code"], limit=16)
+        return (
+            request.env["product.product"]
+            .sudo()
+            .search_read(
+                [], ["id", "name", "list_price", "image_1920", "default_code"], limit=18
+            )
+        )
 
     @http.route("/fulfillment/api/v1/get-pos", type="json", auth="user")
     def get_pos(self):
         return request.env["fulfillment.pos"].load_data()
+
+    @http.route("/fulfillment/api/v1/search-products", type="json", auth="user")
+    def search_products(self, query):
+        query = query.strip()
+
+        return (
+            request.env["product.product"]
+            .sudo()
+            .search_read(
+                [
+                    "|",
+                    "|",
+                    ("name", "ilike", query),
+                    ("default_code", "ilike", query),
+                    ("barcode", "ilike", query),
+                ],
+                ["id", "name", "list_price", "image_1920", "default_code"],
+                limit=18,
+            )
+        )
+
+    @http.route("/fulfillment/api/v1/get-customers", type="json", auth="user")
+    def get_customers(self):
+        return (
+            request.env["res.partner"]
+            .sudo()
+            .search_read(
+                [],
+                [
+                    "id",
+                    "name",
+                    "phone",
+                ],
+                limit=6,
+            )
+        )

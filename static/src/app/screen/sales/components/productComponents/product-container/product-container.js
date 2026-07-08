@@ -2,9 +2,8 @@
 import { Component, onMounted, useState } from "@odoo/owl";
 import { ProductCard } from "../card-product/card-product";
 import { useService } from "@web/core/utils/hooks";
-import { FulfillmentAPI } from "./filfulmnetAPI";
-
-import { rpc } from "@web/core/network/rpc";
+import { FulfillmentAPI } from "../../../../../api/filfulmnetAPI";
+;
 
 
 
@@ -14,20 +13,13 @@ export class ProductsList extends Component {
         ProductCard
     }
     setup() {
-        this.state = useState({
-            products: []
-        });
+        this.state = useState(useService("fulfillmentProduct"));
         this.cart = useState(useService("fulfillmentCart"));
         onMounted(() => {
             console.log("ProductsList mounted");
-            this.fetchProducts();
+            this.state.loadProducts();
+            console.log("ProductsList mounted", this.state.products);
         })
     }
 
-    async fetchProducts() {
-        const products = await FulfillmentAPI.loadProducts();
-        // const products = await rpc("/fulfillment/api/v1/get-products");
-        console.log("products", products);
-        this.state.products = products;
-    }
 }

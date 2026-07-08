@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="fulfillment_order.customer_search">
+        <div t-if="this.customerStore.isSearchOpen" class="fixed inset-0 z-50 backdrop-blur-sm bg-black/20 flex items-center justify-center px-4">
+            <div class="flex flex-col w-full max-w-xl bg-white rounded  overflow-hidden">
+
+                <!-- header -->
+                <div class="flex items-center justify-between px-5 py-6 border-b-2 border-[#D1C3CA]">
+                    <h1 class="text-lg text-gray-900">Select or Create Customer</h1>
+                    <button t-on-click="() => this.customerStore.setSearchOpen(false)" class="text-gray-400 hover:text-gray-700 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- search -->
+                <div class="px-5 pt-4">
+                    <div class="relative flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400 absolute left-3 pointer-events-none">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <input type="text" placeholder="Search by name or phone..." class="text-sm bg-white border border-gray-600  pl-9 pr-4 py-3 w-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+                    </div>
+                </div>
+
+                <!-- customer list -->
+                <div class="flex flex-col mt-3 max-h-80 overflow-y-auto">
+                    <t t-foreach="this.customerStore.customers" t-as="customer" t-key="customer['id']">
+                        <div class="flex items-center justify-between gap-3 px-5 py-3 hover:bg-gray-50">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <div class="shrink-0 w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600">
+                                    <!-- <t t-esc="customer['name'].split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()" /> -->
+                                </div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="text-sm font-bold text-gray-900 truncate" t-esc="customer['name']" />
+                                    <span class="text-xs text-gray-400" t-esc="customer['phone']" />
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 shrink-0">
+                                <span t-if="customer['status'] === 'regular'" class="flex items-center gap-1 text-xs font-medium text-emerald-600 bg-emerald-50 rounded-full px-2 py-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+ Dozani regular
+                                </span>
+                                <span t-elif="customer['status'] === 'new'" class="text-xs font-medium text-indigo-600 bg-indigo-50 rounded-full px-2 py-1">New Customer</span>
+                                <span t-else="" class="text-xs font-medium text-sky-600 bg-sky-50 rounded-full px-2 py-1">Occasional</span>
+
+                                <button t-on-click="() => this.customerStore.selectCustomer(customer)" class="text-xs  text-[#D1C3CA] border border-[#D1C3CA] rounded text-base px-3 py-1.5 hover:bg-indigo-50 cursor-pointer">SELECT</button>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- footer -->
+                <div class="flex items-center justify-between gap-3 bg-[#EFF4FF] p-5 border-t-2 border-[#D1C3CA]">
+                    <span class="text-xs italic text-gray-500">No exact matches? Create a record to track loyalty.</span>
+                    <button t-on-click="() => this.customerStore.openCreateCustomer()" class="flex items-center gap-1.5 text-xs font-semibold text-white bg-[#714B67] rounded px-3 py-2 whitespace-nowrap hover:bg-indigo-950 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                        </svg>
+                        Add New Customer
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </t>
+</templates>

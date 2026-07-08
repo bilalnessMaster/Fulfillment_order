@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
     <t t-name="fulfillment_order.SalesNavbar">
         <!-- border-l-4 border-l-indigo-600 -->
-        <header class="flex items-center justify-between w-full h-14 bg-white border-b  border-b-gray-200 px-4">
+        <header class="flex items-center justify-between w-full h-16 py-2 bg-white border-b-2 border-b-[#D1C3CA] h-full px-4 ">
 
             <!-- Left: Logo + Meta badges -->
             <div class="flex items-center gap-4">
@@ -42,7 +42,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400 absolute left-2.5 pointer-events-none">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
-                    <input type="text" placeholder="Search SKU or Name..." class="text-sm bg-gray-50 border border-gray-200 rounded-lg pl-8 pr-10 py-1.5 w-56 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+                    <input type="text" t-model="input.search" t-on-keydown="handleSearchInput" placeholder="Search SKU or Name..." class="text-sm bg-gray-50 border border-gray-200 rounded-lg pl-8 pr-10 py-1.5 w-56 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
                     <span class="absolute right-2 text-[10px] font-medium text-gray-400 bg-white border border-gray-200 rounded px-1 py-0.5">
                         ⌘F
                     </span>

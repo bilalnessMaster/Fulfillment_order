@@ -2,10 +2,13 @@
 
 import { rpc } from "@web/core/network/rpc";
 export class FulfillmentAPI {
+    // porduct API
     static loadProducts() {
         return rpc("/fulfillment/api/v1/get-products");
     }
-
+    static SearchQueryProducts(query) {
+        return rpc("/fulfillment/api/v1/search-products", { query });
+    }
     static createOrder(data) {
         return rpc("/fulfillment/api/order/create", data);
     }
@@ -15,5 +18,13 @@ export class FulfillmentAPI {
             order_id: orderId,
             status,
         });
+    }
+
+    // customer API
+    static loadCustomers() {
+        return rpc("/fulfillment/api/v1/get-customers");
+    }
+    static SearchQueryCustomers(phone) {
+        return rpc("/fulfillment/api/v1/search-customers", { phone });
     }
 }
