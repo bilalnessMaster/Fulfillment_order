@@ -12,7 +12,7 @@
                     <CarteItems />
                 </div>
             </div>
-            <SearchCustomer />
+            <ContainerCustomer />
         </div>
     </t>
 </templates>

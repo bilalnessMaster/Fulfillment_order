@@ -1,22 +1,37 @@
 import { reactive } from "@odoo/owl";
 import { registry } from "@web/core/registry";
-import { FulfillmentAPI } from "../api/filfulmnetAPI";
+import { FulfillmentAPI } from "../api/fulfillmentAPI";
 
 registry.category("services").add("fulfillmentProduct", {
     start() {
-        return reactive({
-            // state of the app
+        const store = reactive({
             products: [],
+            loading: false,
             async loadProducts() {
-                const response = await FulfillmentAPI.loadProducts();
-                console.log("loadProducts", response);
-                this.products = response || []
+                store.loading = true;
+                try {
+                    const response = await FulfillmentAPI.loadProducts();
+                    store.products = response || [];
+                } catch (e) {
+                    console.error("Failed to load products", e);
+                    store.products = [];
+                } finally {
+                    store.loading = false;
+                }
             },
             async searchProducts(query) {
-                const response = await FulfillmentAPI.SearchQueryProducts(query);
-                console.log("searchProducts", query, response);
-                this.products = response || [];
+                store.loading = true;
+                try {
+                    const response = await FulfillmentAPI.SearchQueryProducts(query);
+                    store.products = response || [];
+                } catch (e) {
+                    console.error("Failed to search products", e);
+                    store.products = [];
+                } finally {
+                    store.loading = false;
+                }
             }
         });
+        return store;
     },
 });

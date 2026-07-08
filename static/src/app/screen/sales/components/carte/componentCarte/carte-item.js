@@ -1,9 +1,4 @@
-import { Component, useState } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
-
-
-
-
+import { Component } from "@odoo/owl";
 
 export class CarteItem extends Component {
     static template = "fulfillment_order.carte_item";
@@ -15,5 +10,4 @@ export class CarteItem extends Component {
         remove: Function,
         changePrice: Function
     }
-
 }

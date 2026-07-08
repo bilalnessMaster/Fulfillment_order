@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="fulfillment_order.customer_container">
+        <div t-if="this.customerStore.isContainerOpen" class="fixed inset-0 z-50 backdrop-blur-sm bg-black/20 flex items-center justify-center px-4">
+            <SearchCustomer />
+            <CreateCustomer />
+            <EditCustomer />
+        </div>
+    </t>
+</templates>

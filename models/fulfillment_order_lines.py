@@ -5,7 +5,7 @@ class FulfilmentLines(models.Model):
     _name = "fulfillment.order.lines"
     _description = "Fulfilment Order Lines"
 
-    order_id = fields.Many2one("fulfilment.orders", string="Order", required=True)
+    order_id = fields.Many2one("fulfillment.orders", string="Order", required=True)
 
     product_id = fields.Many2one("product.product", string="Product", required=True)
 

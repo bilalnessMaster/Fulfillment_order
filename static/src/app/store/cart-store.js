@@ -3,56 +3,57 @@ import { registry } from "@web/core/registry";
 
 registry.category("services").add("fulfillmentCart", {
     start() {
-        return reactive({
-            // state of the app
+        const store = reactive({
             cart: [],
             subtotal: 0,
-            tax: 0,
+            shipping: 0,
             total: 0,
             addToCart(product) {
-                // console.log("product", product.id ,this.cart);
-                const productFind = this.cart?.find(p => p.id === product.id);
+                const productFind = store.cart.find(p => p.id === product.id);
                 if (productFind) {
                     productFind.quantity += 1;
                 } else {
-                    this.cart.push({ ...product, quantity: 1 });
+                    store.cart.push({ ...product, quantity: 1 });
                 }
-                // console.log("this.cart", this.cart);
-                this.calculateTotals();
+                store.calculateTotals();
             },
             removeFromCart(product) {
-                const productIndex = this.cart.findIndex(p => p.id === product.id);
+                const productIndex = store.cart.findIndex(p => p.id === product.id);
                 if (productIndex !== -1) {
-                    this.cart.splice(productIndex, 1);
+                    store.cart.splice(productIndex, 1);
                 }
-                this.calculateTotals();
+                store.calculateTotals();
             },
-            incrementQuantity(product,) {
-                const productFind = this.cart?.find(p => p.id === product.id);
+            incrementQuantity(product) {
+                const productFind = store.cart.find(p => p.id === product.id);
                 if (productFind) {
                     productFind.quantity += 1;
                 }
-                this.calculateTotals();
+                store.calculateTotals();
             },
-            decrementQuantity(product,) {
-                const productFind = this.cart?.find(p => p.id === product.id);
+            decrementQuantity(product) {
+                const productFind = store.cart.find(p => p.id === product.id);
                 if (productFind && productFind.quantity > 1) {
                     productFind.quantity -= 1;
                 }
-                this.calculateTotals();
+                store.calculateTotals();
             },
             changePrice(product, newPrice) {
-                const productFind = this.cart?.find(p => p.id === product.id);
+                const productFind = store.cart.find(p => p.id === product.id);
                 if (productFind) {
                     productFind.list_price = newPrice;
                 }
-                this.calculateTotals();
+                store.calculateTotals();
+            },
+            setShipping(price) {
+                store.shipping = price;
+                store.calculateTotals();
             },
             calculateTotals() {
-                this.subtotal = this.cart.reduce((sum, item) => sum + (item.list_price * item.quantity), 0);
-                this.tax = this.subtotal * 0.08;
-                this.total = this.subtotal + this.tax;
+                store.subtotal = store.cart.reduce((sum, item) => sum + (item.list_price * item.quantity), 0);
+                store.total = store.subtotal + store.shipping;
             }
         });
+        return store;
     },
 });

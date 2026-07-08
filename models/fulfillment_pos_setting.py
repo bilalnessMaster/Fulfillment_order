@@ -10,7 +10,6 @@ class FulfilmentPosSetting(models.Model):
     active = fields.Boolean(string="Active", default=True)
     website_link = fields.Char(string="Website Link")
     warehouse_ids = fields.Many2many('stock.warehouse', string="Warehouses", required=True)
-    pos_ids = fields.Many2many('pos.config', string="POS", required=True)
     
     
     

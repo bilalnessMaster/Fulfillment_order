@@ -9,7 +9,7 @@
     """,
     "author": "Odoo",
     "website": "http://www.odoo.com",
-    "depends": ["base", "web"],
+    "depends": ["base", "web", "stock"],
     "data": [
         "views/fulfillment_index_page.xml",
         # # "security/ir.model.access.csv",

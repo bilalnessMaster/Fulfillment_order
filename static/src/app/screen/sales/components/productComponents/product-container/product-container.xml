@@ -7,7 +7,7 @@
             <t t-foreach="this.state.products" t-as="product" t-key="product['id']">
                 <ProductCard t-props="{
                     product: product,
-                    onAddToCart: this.cart.addToCart.bind(this.cart),
+                    onAddToCart: this.cart.addToCart,
                 }" />
             </t>
         </div>

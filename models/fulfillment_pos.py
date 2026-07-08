@@ -16,12 +16,4 @@ class FulfilmentPos(models.Model):
 
     @api.model
     def load_data(self):
-        pass
-
-    @api.model
-    def load_fulfillment_products(self):
-        return (
-            self.env["product.product"]
-            .sudo()
-            .search_read([], ["id", "name", "list_price", "image_1920", "reference"])
-        )
+        return self.search_read([], ["id", "name", "description", "website_link"])

@@ -27,4 +27,12 @@ export class FulfillmentAPI {
     static SearchQueryCustomers(phone) {
         return rpc("/fulfillment/api/v1/search-customers", { phone });
     }
+
+    static createCustomer(data) {
+        return rpc("/fulfillment/api/customer/create", data);
+    }
+
+    static updateCustomer(data) {
+        return rpc("/fulfillment/api/customer/update", data);
+    }
 }

@@ -10,23 +10,24 @@
                 </span>
 
                 <!-- customer -->
-                <div t-on-click="() => this.customerStore.setSearchOpen(true)" class="flex items-center justify-between gap-2 mt-3 bg-[#EFF4FF] border border-[#D1C3CA] rounded p-4">
+                <div class="flex items-center justify-between gap-2 mt-3 bg-[#EFF4FF] border border-[#D1C3CA] rounded p-4">
                     <div class="flex items-center gap-2">
-                        <div class="size-8  rounded bg-[#E3E3EF]  flex items-center justify-center text-[#57344F]">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                        <div t-on-click="() => this.customerStore.setSearchOpen(true)" class="size-9 cusror-pointer rounded-full bg-[#E3E3EF]  flex items-center justify-center text-[#57344F]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                             </svg>
                         </div>
                         <div class="flex flex-col leading-tight">
-                            <span class="text-[10px] font-semibold text-indigo-400 tracking-wide">CUSTOMER</span>
-                            <!-- <span class="text-sm font-bold text-gray-900" t-esc="props.customer.name" /> -->
+                            <span class="text-[10px] font-semibold text-[#56334E] tracking-wide">CUSTOMER</span>
+                            <span t-if="this.customerStore.currentCustomer['name']" class="text-sm font-bold text-gray-900" t-esc="this.customerStore.currentCustomer['name']" />
+                            <span t-else="" class="text-sm font-bold text-gray-900">Select Customer</span>
                         </div>
                     </div>
-                    <!-- <button t-on-click="() => props.onEditCustomer()" class="text-indigo-400 hover:text-indigo-600 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <button t-if="this.customerStore.currentCustomer" t-on-click="() => this.customerStore.setEditOpen(true)" class="text-[#56334E] hover:text-indigo-600 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125" />
                         </svg>
-                    </button> -->
+                    </button>
                 </div>
             </div>
             <!-- items -->
@@ -41,15 +42,15 @@
             <div class="flex flex-col gap-1 mt-4 bg-[#DCE9FF] absolute w-full  bottom-0 p-6 border-t-2 border-t-[#D1C3CA]">
                 <div class="flex items-center justify-between text-sm text-[#57344F]">
                     <span>Subtotal</span>
-                    <span t-esc="cart.subtotal.toFixed(2) + 'MAD'" />
+                    <span t-esc="cart.subtotal.toFixed(2) + ' MAD'" />
                 </div>
                 <div class="flex items-center justify-between text-sm text-[#57344F]">
-                    <span>Tax (8%)</span>
-                    <span t-esc="cart.tax ? cart.tax.toFixed(2) + 'MAD' : '0.00MAD (Exempt)'" />
+                    <span>Shipping</span>
+                    <input type="number" t-model.number="cart.shipping" t-on-change="() => cart.setShipping(cart.shipping)" min="0" step="0.01" class="w-24 text-right text-sm border border-[#D1C3CA] rounded px-2 py-1 bg-white" />
                 </div>
                 <div class="flex items-center justify-between text-base font-bold text-[#57344F] mt-1">
                     <span>Total</span>
-                    <span t-esc="cart.total.toFixed(2) + 'MAD'" />
+                    <span t-esc="cart.total.toFixed(2) + ' MAD'" />
                 </div>
                 <!-- actions -->
                 <button t-on-click="() => cart.sendToPreparation()" class="flex items-center justify-center gap-2 mt-4 py-2.5 rounded bg-[#57344F] text-white text-sm font-semibold hover:bg-[#57344F]/90 transition-colors cursor-pointer">
