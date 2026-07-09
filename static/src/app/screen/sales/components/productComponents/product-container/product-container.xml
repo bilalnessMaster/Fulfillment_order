@@ -3,7 +3,7 @@
 
     <t t-name="fulfillment_order.sales_products_container">
         <!-- <SalesNavbar /> -->
-        <div class="grid lg:grid-cols-6 md:grid-cols-4 gap-2 p-2">
+        <div class="grid lg:grid-cols-6 md:grid-cols-4 gap-2 p-2 h-full overflow-y-auto">
             <t t-foreach="this.state.products" t-as="product" t-key="product['id']">
                 <ProductCard t-props="{
                     product: product,

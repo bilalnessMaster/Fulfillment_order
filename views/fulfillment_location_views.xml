@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fulfillment_location_view_form" model="ir.ui.view">
+        <field name="name">fulfillment.location.form</field>
+        <field name="model">fulfillment.location</field>
+        <field name="arch" type="xml">
+            <form string="Fulfillment Location">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Location Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" />
+                            <field name="website_link" />
+                        </group>
+                        <group>
+                            <field name="warehouse_ids" widget="many2many_tags" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" placeholder="Description..." />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fulfillment_location_view_list" model="ir.ui.view">
+        <field name="name">fulfillment.location.list</field>
+        <field name="model">fulfillment.location</field>
+        <field name="arch" type="xml">
+            <list string="Fulfillment Locations">
+                <field name="name" />
+                <field name="active" />
+                <field name="website_link" />
+                <field name="warehouse_ids" widget="many2many_tags" />
+            </list>
+        </field>
+    </record>
+
+    <record id="fulfillment_location_action" model="ir.actions.act_window">
+        <field name="name">Fulfillment Locations</field>
+        <field name="res_model">fulfillment.location</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

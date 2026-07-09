@@ -6,6 +6,7 @@ registry.category("services").add("fulfillmentProduct", {
     start() {
         const store = reactive({
             products: [],
+            productLocation: "",
             loading: false,
             async loadProducts() {
                 store.loading = true;

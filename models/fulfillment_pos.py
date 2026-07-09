@@ -13,6 +13,9 @@ class FulfilmentPos(models.Model):
     warehouse_ids = fields.Many2many(
         "stock.warehouse", string="Warehouses", required=True
     )
+    sequence_order_id = fields.Many2one(
+        "ir.sequence", string="Order Sequence", required=True
+    )
 
     @api.model
     def load_data(self):

@@ -25,7 +25,7 @@ export class FulfillmentAPI {
         return rpc("/fulfillment/api/v1/get-customers");
     }
     static SearchQueryCustomers(phone) {
-        return rpc("/fulfillment/api/v1/search-customers", { phone });
+        return rpc("/fulfillment/api/v1/search-customers", { query: phone });
     }
 
     static createCustomer(data) {
@@ -33,6 +33,9 @@ export class FulfillmentAPI {
     }
 
     static updateCustomer(data) {
-        return rpc("/fulfillment/api/customer/update", data);
+        return rpc("/fulfillment/api/v1/customer/update", data);
+    }
+    static sendToPreparation(data) {
+        return rpc("/fulfillment/api/v1/order/send-to-preparation", data);
     }
 }

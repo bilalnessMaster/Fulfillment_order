@@ -20,7 +20,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400 absolute left-3 pointer-events-none">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
-                        <input type="text" placeholder="Search by name or phone..." class="text-sm bg-white border border-gray-600  pl-9 pr-4 py-3 w-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+                        <input type="text" t-on-input="(ev) => this.customerStore.handleSearch(ev.target.value)" t-on-keydown="(ev) => this.customerStore.searchCustomers(ev)" placeholder="Search by name or phone..." class="text-sm bg-white border border-gray-600  pl-9 pr-4 py-3 w-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                         <div class="flex items-center justify-between gap-3 px-5 py-3 hover:bg-gray-50">
                             <div class="flex items-center gap-3 min-w-0">
                                 <div class="shrink-0 w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600">
-                                    <!-- <t t-esc="customer['name'].split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()" /> -->
+                                    <t t-esc="customer['name'].toString().split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()" />
                                 </div>
                                 <div class="flex flex-col min-w-0">
                                     <span class="text-sm font-bold text-gray-900 truncate" t-esc="customer['name']" />
@@ -44,7 +44,7 @@
  Dozani regular
                                 </span>
                                 <span t-elif="customer['status'] === 'new'" class="text-xs font-medium text-indigo-600 bg-indigo-50 rounded-full px-2 py-1">New Customer</span>
-                                <span t-else="" class="text-xs font-medium text-sky-600 bg-sky-50 rounded-full px-2 py-1">Occasional</span>
+                                <span t-else="" class="text-xs text-sky-600 bg-sky-50 rounded px-2 py-1" t-esc="customer['city']" />
 
                                 <button t-on-click="() => this.customerStore.selectCustomer(customer)" class="text-xs  text-[#D1C3CA] border border-[#D1C3CA] rounded text-base px-3 py-1.5 hover:bg-indigo-50 cursor-pointer">SELECT</button>
                             </div>

@@ -5,10 +5,14 @@ class FulfilmentOrders(models.Model):
     _name = "fulfillment.orders"
     _description = "Fulfilment Orders"
 
-    name = fields.Char(string="Order Name", required=True)
+    name = fields.Many2one("ir.sequence", string="Order Name", required=False)
+    # name = fields.Char(string="Order Name", required=True)
 
     fulfilment_pos_id = fields.Many2one(
-        "fulfillment.pos", string="Pos", required=True, help="helps assign POS for the order"
+        "fulfillment.pos",
+        string="Pos",
+        # required=True,
+        help="helps assign POS for the order",
     )
 
     order_date = fields.Datetime(string="Order Date", default=fields.Datetime.now)
@@ -20,9 +24,14 @@ class FulfilmentOrders(models.Model):
     order_taker = fields.Many2one(
         "res.users", string="Order Taker", default=lambda self: self.env.user.id
     )
-    
+
     shipping_price = fields.Float(string="Shipping Price")
-    total_amount = fields.Float(string="Total Amount" , compute="_compute_total_amount", store=True)
+    total_amount = fields.Float(
+        string="Total Amount", compute="_compute_total_amount", store=True
+    )
+    # subtotal_amount = fields.Float(
+    #     string="Subtotal Amount", compute="_compute_total_amount", store=True
+    # )
     customer_id = fields.Many2one("res.partner", string="Customer")
 
     state = fields.Selection(
@@ -37,9 +46,11 @@ class FulfilmentOrders(models.Model):
         default="draft",
         string="State",
     )
-    
-    
+
     @api.depends("order_lines.total_amount", "shipping_price")
     def _compute_total_amount(self):
         for order in self:
-            order.total_amount = sum(line.total_amount for line in order.order_lines) + order.shipping_price
+            order.total_amount = (
+                sum(line.total_amount for line in order.order_lines)
+                + order.shipping_price
+            )

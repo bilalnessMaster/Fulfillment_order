@@ -12,7 +12,7 @@
                 <!-- customer -->
                 <div class="flex items-center justify-between gap-2 mt-3 bg-[#EFF4FF] border border-[#D1C3CA] rounded p-4">
                     <div class="flex items-center gap-2">
-                        <div t-on-click="() => this.customerStore.setSearchOpen(true)" class="size-9 cusror-pointer rounded-full bg-[#E3E3EF]  flex items-center justify-center text-[#57344F]">
+                        <div t-on-click="() => this.customerStore.setSearchOpen(true)" class="size-9 cursor-pointer rounded-full bg-[#E3E3EF]  flex items-center justify-center text-[#57344F]">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                             </svg>
@@ -53,7 +53,7 @@
                     <span t-esc="cart.total.toFixed(2) + ' MAD'" />
                 </div>
                 <!-- actions -->
-                <button t-on-click="() => cart.sendToPreparation()" class="flex items-center justify-center gap-2 mt-4 py-2.5 rounded bg-[#57344F] text-white text-sm font-semibold hover:bg-[#57344F]/90 transition-colors cursor-pointer">
+                <button t-on-click="() => orderStore.sendToPreparation()" class="flex items-center justify-center gap-2 mt-4 py-2.5 rounded bg-[#57344F] text-white text-sm font-semibold hover:bg-[#57344F]/90 transition-colors cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-4 h-4">
                         <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z" clip-rule="evenodd" />
                     </svg>
