@@ -46,8 +46,7 @@
                         <div class="flex flex-col gap-1.5 w-1/2">
                             <label class="text-xs text-gray-700 tracking-wide">LOCATION</label>
 
-                            <select t-att-value="this.customerStore.currentCustomer['city']" t-on-change="(ev) => this.customerStore.editCustomer('city', ev.target.value)" class="text-sm bg-white border border-gray-600 px-3 py-2.5 w-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                                <option value="" disabled="true" selected="true">Select location...</option>
+                            <select t-att-value="this.customerStore.currentCustomer['city']" t-on-change="(ev) => this.customerStore.editCustomer('city', ev.target.value)" class="text-sm bg-white border border-gray-600 px-3 py-2.5 w-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"> 
                                 <option value="agadir">Agadir</option>
                                 <option value="temara">Temara</option>
                                 <option value="tanger">Tanger</option>

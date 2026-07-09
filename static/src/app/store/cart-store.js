@@ -52,7 +52,13 @@ registry.category("services").add("fulfillmentCart", {
             calculateTotals() {
                 store.subtotal = store.cart.reduce((sum, item) => sum + (item.list_price * item.quantity), 0);
                 store.total = store.subtotal + store.shipping;
-            }
+            },
+            clearCart() {
+                store.cart = [];
+                store.subtotal = 0;
+                store.shipping = 0;
+                store.total = 0;
+            },
         });
         return store;
     },

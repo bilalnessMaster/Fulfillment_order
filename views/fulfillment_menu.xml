@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem
+        id="menu_fulfillment_root"
+        name="Fulfillment Order"
+        sequence="45"
+    />
+
+    <!-- Fulfilment POS -->
+    <menuitem
+        id="menu_fulfillment_pos"
+        name="Fulfilment POS"
+        parent="menu_fulfillment_root"
+        action="fulfillment_pos_action"
+        sequence="10"
+    />
+
+    <!-- Fulfilment POS Settings -->
+    <menuitem
+        id="menu_fulfillment_pos_setting"
+        name="POS Settings"
+        parent="menu_fulfillment_root"
+        action="fulfillment_pos_setting_action"
+        sequence="20"
+    />
+
+    <!-- Fulfilment Orders -->
+    <menuitem
+        id="menu_fulfillment_orders"
+        name="Orders"
+        parent="menu_fulfillment_root"
+        action="fulfillment_orders_action"
+        sequence="30"
+    />
+
+    <!-- Fulfilment Order Lines -->
+    <menuitem
+        id="menu_fulfillment_order_lines"
+        name="Order Lines"
+        parent="menu_fulfillment_root"
+        action="fulfillment_order_lines_action"
+        sequence="40"
+    />
+
+    <!-- Fulfillment Locations -->
+    <menuitem
+        id="menu_fulfillment_location"
+        name="Locations"
+        parent="menu_fulfillment_root"
+        action="fulfillment_location_action"
+        sequence="50"
+    />
+
+</odoo>

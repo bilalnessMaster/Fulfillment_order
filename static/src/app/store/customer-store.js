@@ -23,6 +23,7 @@ registry.category("services").add("fulfillmentCustomer", {
                 city: "",
                 address: "",
             },
+            searchQuery: "",
             message_after_request: "",
             async loadCustomers() {
                 try {
@@ -33,13 +34,19 @@ registry.category("services").add("fulfillmentCustomer", {
                     store.customers = [];
                 }
             },
-            async searchCustomer(phone) {
-                try {
-                    const response = await FulfillmentAPI.SearchQueryCustomers(phone);
-                    store.customers = response || [];
-                } catch (e) {
-                    console.error("Failed to search customers", e);
-                    store.customers = [];
+            handleSearch(query) {
+                store.searchQuery = query;
+            },
+            async searchCustomers(ev) {
+                console.log("Search query:", store.searchQuery);
+                if (ev.key === "Enter") {
+                    try {
+                        const response = await FulfillmentAPI.SearchQueryCustomers(store.searchQuery);
+                        store.customers = response || [];
+                    } catch (e) {
+                        console.error("Failed to search customers", e);
+                        store.customers = [];
+                    }
                 }
             },
             setSearchOpen(isOpen) {
@@ -96,13 +103,13 @@ registry.category("services").add("fulfillmentCustomer", {
                     const response = await FulfillmentAPI.createCustomer(store.newCustomer);
                     if (response && response.error) {
                         store.message_after_request = response.error;
-                    } else if (response && response.id) {
+                    } else if (response && response.length > 0) {
                         store.currentCustomer = {
-                            city: response.city,
-                            name: response.name,
-                            phone: response.phone,
-                            address: response.street,
-                            id: response.id
+                            city: response[0].city,
+                            name: response[0].name,
+                            phone: response[0].phone,
+                            address: response[0].street,
+                            id: response[0].id
                         };
                         store.message_after_request = "Customer created successfully";
                         store.newCustomer = {
@@ -122,15 +129,17 @@ registry.category("services").add("fulfillmentCustomer", {
                     const response = await FulfillmentAPI.updateCustomer(store.newInfoCustomer);
                     if (response && response.error) {
                         store.message_after_request = response.error;
-                    } else if (response && response.id) {
+                    } else if (response && response.length > 0) {
+                        // console.log("Response from updateCustomer:", response);
                         store.currentCustomer = {
-                            city: response.city,
-                            name: response.name,
-                            phone: response.phone,
-                            address: response.street,
-                            id: response.id
+                            city: response[0].city,
+                            name: response[0].name,
+                            phone: response[0].phone,
+                            address: response[0].street,
+                            id: response[0].id
                         };
                         store.message_after_request = "Customer updated successfully";
+                        // console.log("Updated customer:", store.currentCustomer);
                     }
                 } catch (e) {
                     console.error("Failed to update customer", e);

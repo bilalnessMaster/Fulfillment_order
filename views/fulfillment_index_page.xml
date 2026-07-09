@@ -20,6 +20,14 @@
                     } 
 
                 </style>
+                <script type="text/javascript">
+                window.fulfillment = <t t-out="json.dumps({
+                    'user': user,
+                    'pos': pos,
+                    'fulfillment_locations': fulfillment_locations,
+                    'fulfillment_role': fulfillment_role,
+                })"/>;
+                </script>
                 <script src="https://cdn.jsdelivr.net/npm/js-toastr@1.1.1/toast.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/js-toastr@1.1.1/toast.min.css" rel="stylesheet"/>
 

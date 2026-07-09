@@ -6,10 +6,15 @@ export class SalesNavbar extends Component {
     setup() {
         this.input = useState({ search: "" });
         this.state = useState(useService("fulfillmentProduct"));
+        // this.user = useService("user")
     }
     handleSearchInput(event) {
         if (event.key === "Enter") {
             this.state.searchProducts(this.input.search);
         }
+    }
+    handlelocationChange(event) {
+        
+        this.state.productLocation = event.target.value;
     }
 }

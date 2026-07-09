@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fulfillment_orders_view_form" model="ir.ui.view">
+        <field name="name">fulfillment.orders.form</field>
+        <field name="model">fulfillment.orders</field>
+        <field name="arch" type="xml">
+            <form string="Fulfilment Order">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Order Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="fulfilment_pos_id" />
+                            <field name="customer_id" />
+                            <field name="order_taker" />
+                        </group>
+                        <group>
+                            <field name="order_date" />
+                            <field name="shipping_price" />
+                            <field name="total_amount" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines" name="order_lines">
+                            <field name="order_lines">
+                                <list editable="bottom">
+                                    <field name="product_id" />
+                                    <field name="quantity" />
+                                    <field name="unit_price" />
+                                    <field name="total_amount" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fulfillment_orders_view_list" model="ir.ui.view">
+        <field name="name">fulfillment.orders.list</field>
+        <field name="model">fulfillment.orders</field>
+        <field name="arch" type="xml">
+            <list string="Fulfilment Orders" decoration-info="state == 'draft'" decoration-warning="state == 'processing'" decoration-success="state == 'delivered'" decoration-danger="state == 'cancelled'">
+                <field name="id" column_invisible="1" />
+                <field name="name" />
+                <field name="fulfilment_pos_id" />
+                <field name="customer_id" />
+                <field name="order_date" />
+                <field name="total_amount" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+
+    <record id="fulfillment_orders_view_search" model="ir.ui.view">
+        <field name="name">fulfillment.orders.search</field>
+        <field name="model">fulfillment.orders</field>
+        <field name="arch" type="xml">
+            <search string="Search Orders">
+                <field name="name" />
+                <field name="fulfilment_pos_id" />
+                <field name="customer_id" />
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]" />
+                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]" />
+                <filter name="filter_processing" string="Processing" domain="[('state', '=', 'processing')]" />
+                <filter name="filter_shipped" string="Shipped" domain="[('state', '=', 'shipped')]" />
+                <filter name="filter_delivered" string="Delivered" domain="[('state', '=', 'delivered')]" />
+                <filter name="filter_cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]" />
+                <group expand="0" string="Group By">
+                    <filter name="group_state" string="State" context="{'group_by': 'state'}" />
+                    <filter name="group_pos" string="POS" context="{'group_by': 'fulfilment_pos_id'}" />
+                    <filter name="group_date" string="Order Date" context="{'group_by': 'order_date'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="fulfillment_orders_action" model="ir.actions.act_window">
+        <field name="name">Fulfilment Orders</field>
+        <field name="res_model">fulfillment.orders</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="fulfillment_orders_view_search" />
+        <field name="context">{'search_default_filter_draft': 1}</field>
+    </record>
+
+</odoo>

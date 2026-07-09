@@ -17,6 +17,10 @@ export class FulfillmentOrderApp extends Component {
     setup() {
         this.store = useState(useService("fulfillmentStore"));
         onMounted(async () => {
+            console.log(window.fulfillment.pos);
+            console.log(window.fulfillment.fulfillment_locations);
+            console.log(window.fulfillment.fulfillment_role);
+            console.log(window.fulfillment.user);
             console.log("FulfillmentOrderApp mounted");
         })
     }

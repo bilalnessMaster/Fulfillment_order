@@ -14,5 +14,6 @@ export class CarteItems extends Component {
     setup() {
         this.cart = useState(useService("fulfillmentCart"));
         this.customerStore = useState(useService("fulfillmentCustomer"));
+        this.orderStore = useState(useService("fulfillmentOrder"));
     }
 }

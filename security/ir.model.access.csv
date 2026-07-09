@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fulfillment_pos_user,fulfillment.pos.user,model_fulfillment_pos,base.group_user,1,1,1,1
+access_fulfillment_pos_setting_user,fulfillment.pos.setting.user,model_fulfillment_pos_setting,base.group_user,1,1,1,1
+access_fulfillment_orders_user,fulfillment.orders.user,model_fulfillment_orders,base.group_user,1,1,1,1
+access_fulfillment_order_lines_user,fulfillment.order.lines.user,model_fulfillment_order_lines,base.group_user,1,1,1,1
+access_fulfillment_location_user,fulfillment.location.user,model_fulfillment_location,base.group_user,1,1,1,1

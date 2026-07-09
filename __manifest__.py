@@ -11,11 +11,15 @@
     "website": "http://www.odoo.com",
     "depends": ["base", "web", "stock"],
     "data": [
+        "security/ir.model.access.csv",
+        "views/res_user.xml",
+        "views/fulfillment_pos_views.xml",
+        "views/fulfillment_pos_setting_views.xml",
+        "views/fulfillment_order_lines_views.xml",
+        "views/fulfillment_orders_views.xml",
+        "views/fulfillment_location_views.xml",
+        "views/fulfillment_menu.xml",
         "views/fulfillment_index_page.xml",
-        # # "security/ir.model.access.csv",
-        # "views/fulfillment_pos.xml",
-        # "views/fulfillment_pos_setting.xml",
-        # "views/fulfilment_order.xml",
     ],
     "assets": {
         "fulfillment_order._assets_app": [
