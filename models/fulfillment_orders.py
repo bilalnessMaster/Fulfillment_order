@@ -6,7 +6,7 @@ class FulfilmentOrders(models.Model):
     _description = "Fulfilment Orders"
 
     name = fields.Many2one("ir.sequence", string="Order Name", required=False)
-    # name = fields.Char(string="Order Name", required=True)
+    name_order = fields.Char(string="Order Name")
 
     fulfilment_pos_id = fields.Many2one(
         "fulfillment.pos",
@@ -25,6 +25,17 @@ class FulfilmentOrders(models.Model):
         "res.users", string="Order Taker", default=lambda self: self.env.user.id
     )
 
+    order_processor = fields.Many2one(
+        "res.users",
+        string="Order Processor",
+    )
+    location_id = fields.Many2one("fulfillment.location", string="location of order")
+
+    order_manager = fields.Many2one(
+        "res.users",
+        string="Order Manager",
+    )
+
     shipping_price = fields.Float(string="Shipping Price")
     total_amount = fields.Float(
         string="Total Amount", compute="_compute_total_amount", store=True
@@ -41,6 +52,7 @@ class FulfilmentOrders(models.Model):
             ("processing", "Processing"),
             ("shipped", "Shipped"),
             ("delivered", "Delivered"),
+            ("returned", "Returned"),
             ("cancelled", "Cancelled"),
         ],
         default="draft",
@@ -54,3 +66,9 @@ class FulfilmentOrders(models.Model):
                 sum(line.total_amount for line in order.order_lines)
                 + order.shipping_price
             )
+
+    def action_report(self):
+        self.ensure_one()
+        return self.env.ref(
+            "fulfillment_order.fulfillment_orders_report"
+        ).report_action(self)

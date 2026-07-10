@@ -6,8 +6,13 @@ export class Navbar extends Component {
 
     setup() {
         this.store = useState(useService("fulfillmentStore"));
-
+        this.profile = useState(useService("fulfillmentUser"));
         onMounted(() => {
+            this.profile.loadProfile();
+            if (window.fulfillment_role === "Processor") {
+                this.store.show("orders")
+                this.store.allowedScreen = ["orders"];
+            };
             console.log("Navbar mounted");
         });
 
