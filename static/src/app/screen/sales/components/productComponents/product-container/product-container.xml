@@ -3,13 +3,18 @@
 
     <t t-name="fulfillment_order.sales_products_container">
         <!-- <SalesNavbar /> -->
-        <div class="grid lg:grid-cols-6 md:grid-cols-4 gap-2 p-2 h-full overflow-y-auto">
+        <div t-if="this.state.products.length > 0" class="grid lg:grid-cols-6 md:grid-cols-4 gap-2 p-2 h-full overflow-y-auto">
             <t t-foreach="this.state.products" t-as="product" t-key="product['id']">
                 <ProductCard t-props="{
                     product: product,
                     onAddToCart: this.cart.addToCart,
                 }" />
             </t>
+        </div>
+        <div t-else="" class="h-full overflow-y-auto w-full flex items-center justify-center">
+            <span >
+                NO PRODUCTS FOUND OR YOU HAVE TO SELECT LOCATION
+            </span>
         </div>
     </t>
 </templates>

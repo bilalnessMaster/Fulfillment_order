@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_fulfillment_reciept" model="ir.actions.report">
+        <field name="name">Fulfillment Order Receipt</field>
+        <field name="model">fulfillment.orders</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">fulfillment_order.fulfillment_orders_reciept</field>
+        <field name="report_file">fulfillment_order.fulfillment_orders_reciept</field>
+        <field name="binding_model_id" ref="model_fulfillment_orders"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

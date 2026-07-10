@@ -19,4 +19,25 @@ class FulfilmentPos(models.Model):
 
     @api.model
     def load_data(self):
-        return self.search_read([], ["id", "name", "description", "website_link"])
+        try:
+            user = self.env.user.read(
+                [
+                    "id",
+                    "fulfilment_pos_id",
+                    "name",
+                    "login",
+                    "fulfillment_role",
+                    "fulfillment_location_ids",
+                ]
+            )[0]
+            location = (
+                self.env["fulfillment.location"]
+                .search([("id", "in", user["fulfillment_location_ids"])])
+                .read(["id", "name"])
+            )
+            pos = self.search([("id", "=", user["fulfilment_pos_id"][0])]).read(
+                ["id", "name"]
+            )[0]
+            return {"user": user, "pos": pos, "location": location}
+        except Exception as e:
+            return {"error": str(e), "pos": pos, "user": user}

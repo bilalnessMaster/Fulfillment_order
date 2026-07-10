@@ -14,19 +14,22 @@
                     </div>
                     <div class="oe_title">
                         <h1>
-                            <field name="name" placeholder="Order Name" />
+                            <field name="name_order" placeholder="Order Name" readonly="1" />
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="fulfilment_pos_id" />
-                            <field name="customer_id" />
-                            <field name="order_taker" />
+                            <field name="fulfilment_pos_id" readonly="1" />
+                            <field name="customer_id" readonly="1" />
+                            <field name="order_taker" readonly="1" />
+                            <field name="location_id" readonly="1" />
                         </group>
                         <group>
-                            <field name="order_date" />
-                            <field name="shipping_price" />
-                            <field name="total_amount" />
+                            <field name="order_date" readonly="1" />
+                            <field name="shipping_price" readonly="1" />
+                            <field name="total_amount" readonly="1" />
+                            <field name="order_processor" readonly="1" />
+                            <button name="action_report" type="object" string="Downlaod Reciept"/>
                         </group>
                     </group>
                     <notebook>
@@ -52,7 +55,7 @@
         <field name="arch" type="xml">
             <list string="Fulfilment Orders" decoration-info="state == 'draft'" decoration-warning="state == 'processing'" decoration-success="state == 'delivered'" decoration-danger="state == 'cancelled'">
                 <field name="id" column_invisible="1" />
-                <field name="name" />
+                <field name="name_order" />
                 <field name="fulfilment_pos_id" />
                 <field name="customer_id" />
                 <field name="order_date" />

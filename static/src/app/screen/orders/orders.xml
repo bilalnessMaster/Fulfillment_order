@@ -2,8 +2,16 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="fulfillment_order.orders_screen">
-        <div class="w-full ">
-            <h1 class="h4 mb-0 text-primary">Orders</h1>
+        <div class="flex flex-col w-full h-screen bg-[#F9F9F9] relative">
+            <OrderNavbar />
+            <div class="grid grid-cols-12 flex-1 h-full">
+                <div class="col-span-9 overflow-y-auto h-full">
+                    <OrderContainer />
+                </div>
+                <div class="col-span-3 border-l-2 h-full border-l-[#D1C3CA] bg-[#F9F9F9]">
+                    <OrderDetail />
+                </div>
+            </div>
         </div>
     </t>
 </templates>

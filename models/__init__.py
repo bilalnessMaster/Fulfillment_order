@@ -4,3 +4,4 @@ from . import fulfillment_order_lines
 from . import fulfillment_pos_setting
 from . import res_user
 from . import fulfillment_location
+from . import fulfillment_order_report

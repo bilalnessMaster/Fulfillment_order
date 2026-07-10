@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="fulfillment_order.orderNavbar">
+        <header class="flex items-center justify-between w-full h-16 py-2 bg-white border-b-2 border-b-[#D1C3CA] px-4">
+
+            <div class="flex items-center gap-4">
+                <h1 class="text-base font-bold text-gray-900 whitespace-nowrap">
+                    Odoo Fulfillment
+                </h1>
+
+                <div class="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-md px-2 py-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                    </svg>
+                    <span class="font-semibold text-gray-800" t-esc="window.fulfillment.pos.name" />
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                    <!-- <t t-foreach="['all', 'draft', 'confirmed', 'processing', 'shipped']" t-as="filter" t-key="filter">
+                        <button t-on-click="() => this.setFilter(filter)" t-attf-class="px-3 py-1.5 text-xs font-medium rounded-lg transition-colors cursor-pointer
+                                #{this.isActive(filter) ? 'bg-indigo-600 text-white' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-100'}">
+                            <span t-esc="filter.charAt(0).toUpperCase() + filter.slice(1)"/>
+                            <span class="ml-1 px-1.5 py-0.5 text-[10px] rounded-full" t-attf-class="#{this.isActive(filter) ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-600'}" t-esc="this.getFilterCount(filter)"/>
+                        </button>
+                    </t> -->
+                </div>
+
+                <div class="relative flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400 absolute left-2.5 pointer-events-none">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <input type="text" t-model="input.search" t-on-input="handleSearchInputLive" placeholder="Search orders..." class="text-sm bg-gray-50 border border-gray-200 rounded-lg pl-8 pr-10 py-1.5 w-56 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+                    <span class="absolute right-2 text-[10px] font-medium text-gray-400 bg-white border border-gray-200 rounded px-1 py-0.5">
+                        ⌘F
+                    </span>
+                </div>
+<!-- 
+                <button t-if="this.profile.user?.name" class="flex items-center gap-2 pl-2 border-l border-gray-200 cursor-pointer">
+                    <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-semibold" t-esc="this.profile.user.name.charAt(0).toUpperCase()"/>
+                    <div class="hidden md:flex flex-col leading-tight text-left">
+                        <span class="text-sm font-semibold text-gray-900" t-esc="this.profile.user.name"/>
+                        <span class="text-[10px] font-medium text-gray-400 tracking-wide" t-esc="'ROLE : ' + this.profile.user.fulfillment_role.toUpperCase()"/>
+                    </div>
+                </button> -->
+            </div>
+
+        </header>
+    </t>
+</templates>

@@ -20,6 +20,8 @@
         "views/fulfillment_location_views.xml",
         "views/fulfillment_menu.xml",
         "views/fulfillment_index_page.xml",
+        "views/fulfillment_orders_reciept.xml",
+        "views/fulfillment_order_actoin_report.xml",
     ],
     "assets": {
         "fulfillment_order._assets_app": [

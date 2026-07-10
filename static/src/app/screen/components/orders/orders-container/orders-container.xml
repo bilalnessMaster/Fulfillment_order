@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="fulfillment_order.orders_orders_container">
+        <div t-if="this.orders.filteredOrders.length > 0" class="grid grid-cols-3 gap-3 p-4 h-full overflow-y-auto">
+            <t t-foreach="this.orders.filteredOrders" t-as="order" t-key="order['id']">
+                <OrderCard order="order" />
+            </t>
+        </div>
+        <div t-else="" class="h-full w-full flex items-center justify-center">
+            <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-16 h-16 text-gray-300 mx-auto mb-3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                </svg>
+                <span class="text-gray-400 text-sm font-medium">No orders found</span>
+            </div>
+        </div>
+    </t>
+</templates>

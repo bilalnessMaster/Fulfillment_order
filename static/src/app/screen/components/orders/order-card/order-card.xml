@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="fulfillment_order.order_card">
+        <div t-on-click="selectOrder" class="bg-white rounded border border-gray-200 p-4 cursor-pointer hover:border-indigo-400 hover:shadow-md transition-all max-h-fit">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-sm font-bold text-gray-900" t-esc="this.props.order.name_order || 'ORD-' + this.props.order.id"/>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border"
+                    t-attf-class="#{this.getStateColor(this.props.order.state)}"
+                    t-esc="this.props.order.state"/>
+            </div>
+
+            <div class="flex flex-col gap-1.5 mb-3">
+                <div class="flex items-center gap-2 text-xs text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                    <span t-esc="this.props.order.customer_id?.name || 'N/A'"/>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                    </svg>
+                    <span t-esc="this.formatDate(this.props.order.order_date)"/>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                <span class="text-[10px] text-gray-400">
+                    <t t-esc="this.props.order.order_lines?.length || 0"/> items
+                </span>
+                <div class="flex items-center gap-2">
+                    <a t-attf-href="'/report/pdf/fulfillment_order.fulfillment_orders_reciept/' + this.props.order.id"
+                       target="_blank"
+                       t-on-click="(e) => e.stopPropagation()"
+                       style="text-decoration: none;"
+                       class="p-1 text-gray-400 hover:text-indigo-600 rounded transition-colors"
+                       title="Download Receipt">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                    </a>
+                    <span class="text-sm font-bold text-indigo-600">
+                        $<t t-esc="this.props.order.total_amount?.toFixed(2) || '0.00'"/>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

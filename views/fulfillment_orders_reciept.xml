@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="fulfillment_orders_reciept">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="order">
+                <t t-call="web.external_layout">
+                    <t t-set="doc_args" t-value="{'doc_model': 'fulfillment.orders', 'doc_ids': order_ids}"/>
+
+                    <div class="page">
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h2 class="mb-1" style="font-size: 18px; font-weight: bold;">Order Receipt</h2>
+                                <div style="font-size: 12px; color: #666;">
+                                    <p class="mb-0"><strong>Order:</strong> <t t-esc="order.name_order or order.display_name"/></p>
+                                    <p class="mb-0"><strong>Date:</strong> <t t-esc="order.order_date"/></p>
+                                    <p class="mb-0"><strong>State:</strong> <span class="badge rounded-pill text-bg-info" t-esc="order.state"/></p>
+                                </div>
+                            </div>
+                            <div class="col-6 text-end">
+                                <div t-if="order.location_id" style="font-size: 12px; color: #666;">
+                                    <p class="mb-0"><strong>Warehouse:</strong> <t t-esc="order.location_id.name"/></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <div class="card" style="border: 1px solid #dee2e6; border-radius: 6px; padding: 12px;">
+                                    <h6 style="font-size: 13px; font-weight: bold; color: #495057; margin-bottom: 8px;">Customer Information</h6>
+                                    <div style="font-size: 12px;">
+                                        <p class="mb-1"><strong>Name:</strong> <t t-esc="order.customer_id.name or 'N/A'"/></p>
+                                        <p class="mb-1"><strong>Phone:</strong> <t t-esc="order.customer_id.phone or 'N/A'"/></p>
+                                        <p class="mb-1" t-if="order.customer_id.city"><strong>City:</strong> <t t-esc="order.customer_id.city"/></p>
+                                        <p class="mb-0" t-if="order.customer_id.street"><strong>Address:</strong> <t t-esc="order.customer_id.street"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card" style="border: 1px solid #dee2e6; border-radius: 6px; padding: 12px;">
+                                    <h6 style="font-size: 13px; font-weight: bold; color: #495057; margin-bottom: 8px;">Order Summary</h6>
+                                    <div style="font-size: 12px;">
+                                        <p class="mb-1"><strong>Total Items:</strong> <t t-esc="len(order.order_lines)"/></p>
+                                        <p class="mb-0"><strong>Order Taker:</strong> <t t-esc="order.order_taker.name or 'N/A'"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-sm" style="font-size: 12px;">
+                            <thead>
+                                <tr style="background-color: #f8f9fa;">
+                                    <th style="width: 5%;">#</th>
+                                    <th style="width: 40%;">Product</th>
+                                    <th style="width: 15%;" class="text-center">Qty</th>
+                                    <th style="width: 20%;" class="text-end">Unit Price</th>
+                                    <th style="width: 20%;" class="text-end">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="order.order_lines" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line_index + 1"/></td>
+                                        <td><t t-esc="line.product_id.name"/></td>
+                                        <td class="text-center"><t t-esc="line.quantity"/></td>
+                                        <td class="text-end"><t t-esc="'%.2f' % line.unit_price"/></td>
+                                        <td class="text-end"><t t-esc="'%.2f' % line.total_amount"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <div class="row mt-3">
+                            <div class="col-6 offset-6">
+                                <table class="table table-sm" style="font-size: 12px;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-end" style="border: none;"><strong>Subtotal:</strong></td>
+                                            <td class="text-end" style="border: none; width: 120px;">
+                                                <t t-esc="'%.2f' % (order.total_amount - order.shipping_price)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-end" style="border: none;"><strong>Shipping:</strong></td>
+                                            <td class="text-end" style="border: none;">
+                                                <t t-esc="'%.2f' % order.shipping_price"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-top: 2px solid #dee2e6;">
+                                            <td class="text-end" style="border: none;"><strong style="font-size: 14px;">Total:</strong></td>
+                                            <td class="text-end" style="border: none;">
+                                                <strong style="font-size: 14px;"><t t-esc="'%.2f' % order.total_amount"/></strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-center" style="font-size: 11px; color: #999;">
+                            <p class="mb-0">Thank you for your order!</p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="fulfillment_order.Navbar">
-        <header class="flex flex-col items-center justify-start h-screen w-16 bg-[#213145] text-white py-4">
+        <header t-if="window.fulfillment.fulfillment_role !== 'processor'" class="flex flex-col items-center justify-start h-screen w-16 bg-[#213145] text-white py-4">
 
             <!-- logo -->
             <div class="flex items-center justify-center w-10 h-10 mb-6">
