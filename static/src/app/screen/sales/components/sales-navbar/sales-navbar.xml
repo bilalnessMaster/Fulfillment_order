@@ -18,18 +18,19 @@
                         <span class="font-semibold text-gray-800" t-esc="window.fulfillment.pos.name" />
                     </span>
 
-                    <!-- <span class="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-md px-2 py-1">
+                    <span class="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-md px-2 py-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />
                         </svg>
                         Warehouse: 
-                        <select t-att-value="" t-on-change="(ev) => this.handlelocationChange(ev)" class="text-sm bg-white border border-gray-600 px-3 py-2.5 w-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                        <!-- t-att-value="" t-on-change="(ev) => this.handlelocationChange(ev)" -->
+                        <select  class="text-sm bg-white border border-gray-600 px-3 py-2.5 w-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="" disabled="true" selected="true">Select location...</option>
                             <t t-foreach="window.fulfillment_locations" t-as="location" t-key="location['id']">
                                 <option t-att-value="location['id']" t-esc="location['name']"/>
                             </t>
                         </select>
-                    </span> -->
+                    </span>
                 </div>
 
                 <!-- <nav class="flex items-center gap-5 ml-2">
